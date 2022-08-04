@@ -1,0 +1,18 @@
+#
+# GitLab CI/CD example based on
+# https://docs.gitlab.com/ee/ci/examples/#cicd-templates
+#
+image: gcc
+
+build:
+  stage: build
+  script:
+    - make
+  artifacts:
+    paths:
+      - hello
+
+test:
+  stage: test
+  script:
+    - ./hello
