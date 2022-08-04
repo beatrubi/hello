@@ -1,0 +1,28 @@
+#
+# GitHub CI/CD example based on
+# https://www.incredibuild.com/blog/using-github-actions-with-your-c-project
+# https://github.com/actions/upload-artifact
+#
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: make
+      run: make
+    - name: test binary
+      run: ./hello
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: hello
+        path: hello
