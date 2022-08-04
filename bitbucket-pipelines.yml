@@ -1,0 +1,17 @@
+#
+# Bitbucket CI/CD example based on
+# https://support.atlassian.com/bitbucket-cloud/docs/get-started-with-bitbucket-pipelines/
+# https://support.atlassian.com/bitbucket-cloud/docs/use-artifacts-in-steps/
+#
+image: gcc
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build and Run
+            script:
+              - make
+              - ./hello
+            artifacts:
+              - hello
